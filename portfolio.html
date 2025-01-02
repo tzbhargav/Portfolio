@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bhargav Krishna Portfolio</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background-color: black;
+            color: #f2f2f2;
+            overflow-x: hidden;
+        }
+
+        /* Navbar */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.9);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #7FFFD4;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+            margin: 0;
+        }
+
+        nav ul li {
+            display: inline;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #f2f2f2;
+            font-size: 1rem;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: #7FFFD4;
+            left: 0;
+            bottom: -5px;
+            transition: width 0.3s;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            background: black;
+            color: #ffffff;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 600;
+            margin: 0;
+            animation: fadeIn 3s ease-in-out;
+        }
+
+        .hero h1 span {
+            display: inline-block;
+            cursor: pointer;
+            transition: color 0.6s ease;
+        }
+
+        .hero h1 span:hover {
+            color: #AFFFFD;
+            /* Brighter color */
+            text-shadow: 0 0 10px #AFFFFD, 0 0 6px #AFFFFD;
+            /* Glow effect */
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin: 10px 0 0;
+        }
+
+        .hero button {
+            margin-top: 20px;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            border: 2px solid #66D2B2;
+            border-radius: 20px;
+            /* Rounded corners */
+            background: black;
+            color: white;
+            cursor: pointer;
+            transition: transform 0.3s, background 0.3s;
+            margin-top: 80px;
+        }
+
+        .hero button:hover {
+            transform: scale(1.1) rotate(0deg);
+            /* Slight rotation */
+            background: #66D2B2;
+            box-shadow: 0 10px 15px rgba(102, 210, 178, 0.6);
+            /* Glow effect */
+        }
+
+        .hero button:active {
+            transform: scale(1.05) rotate(0deg);
+            /* Rotate in the opposite direction */
+            box-shadow: 0 5px 10px rgba(102, 210, 178, 0.4);
+            /* Reduced shadow */
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Portfolio Section */
+        .portfolio {
+            padding: 50px 20px;
+            background: black;
+        }
+
+        .portfolio h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            color: #7FFFD4;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .portfolio-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .portfolio-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.3s;
+        }
+
+        .portfolio-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .portfolio-item .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        .portfolio-item:hover .overlay {
+            opacity: 1;
+        }
+
+        /* Divider */
+        .divider {
+            height: 2px;
+            background: #7FFFD4;
+            margin: 30px auto;
+            width: 100%;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 50px 20px;
+            background: black;
+            color: #f2f2f2;
+        }
+
+        .contact h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            color: #7FFFD4;
+        }
+
+        .contact-details {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact-details p {
+            font-size: 1.2rem;
+            margin: 10px 0;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: black;
+            color: #888;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        @media screen and (max-width: 768px) {
+            nav ul {
+                flex-direction: row;
+                gap: 10px;
+            }
+
+            nav ul li a {
+                font-size: 0.9rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            .hero button {
+                font-size: 1rem;
+                padding: 10px 20px;
+            }
+
+            .portfolio h2 {
+                font-size: 2rem;
+            }
+
+            .contact h2 {
+                font-size: 2rem;
+            }
+
+            .contact-details p {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            nav .logo {
+                font-size: 1.4rem;
+                max-width: 100px;
+                /* Reduce width for smaller screens */
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
+                /* Adjust gap for better fit */
+            }
+
+            nav ul li a {
+                font-size: 0.9rem;
+                /* Adjust font size for smaller screens */
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            nav {
+                flex-direction: row;
+                /* align-items: flex-start; */
+                padding: 10px;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-details p {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="logo">Portfolio</div>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <header class="hero">
+
+        <h1>Hi, I&#39;m Bhargav Krishna</h1>
+        <p>Graphic Designer | Web Developer | Poster Designer</p>
+        <button onclick="document.querySelector('#portfolio').scrollIntoView({behavior: 'smooth'})">Explore My
+            Work</button>
+    </header>
+
+    <section id="portfolio" class="portfolio">
+        <h2>My Work</h2>
+        <div class="portfolio-grid">
+            <div class="portfolio-item">
+                <img src="Day5.png" alt="Sample Work">
+                <div class="overlay">Sample Work 1</div>
+            </div>
+            <div class="portfolio-item">
+                <img src="Day13.png" alt="Sample Work">
+                <div class="overlay">Sample Work 2</div>
+            </div>
+            <div class="portfolio-item">
+                <img src="Day12.png" alt="Sample Work">
+                <div class="overlay">Sample Work 3</div>
+            </div>
+            <div class="portfolio-item">
+                <img src="Day28.png" alt="Sample Work">
+                <div class="overlay">Sample Work 4</div>
+            </div>
+            <div class="portfolio-item">
+                <img src="Day25.png" alt="Sample Work">
+                <div class="overlay">Sample Work 5</div>
+            </div>
+            <div class="portfolio-item">
+                <img src="Day24.png" alt="Sample Work">
+                <div class="overlay">Sample Work 6</div>
+            </div>
+            <div class="portfolio-item">
+                <img src="Day22.png" alt="Sample Work">
+                <div class="overlay">Sample Work 7</div>
+            </div>
+            <div class="portfolio-item">
+                <img src="Day20.png" alt="Sample Work">
+                <div class="overlay">Sample Work 8</div>
+            </div>
+            <div class="portfolio-item">
+                <img src="Day29.png" alt="Sample Work">
+                <div class="overlay">Sample Work 9</div>
+            </div>
+            <div class="portfolio-item">
+                <img src="Day14.png" alt="Sample Work">
+                <div class="overlay">Sample Work 10</div>
+            </div>
+            <div class="portfolio-item">
+                <img src="Day10.png" alt="Sample Work">
+                <div class="overlay">Sample Work 11</div>
+            </div>
+            <div class="portfolio-item">
+                <img src="Day9.png" alt="Sample Work">
+                <div class="overlay">Sample Work 12</div>
+            </div>
+            <div class="portfolio-item">
+                <img src="Day8.png" alt="Sample Work">
+                <div class="overlay">Sample Work 13</div>
+            </div>
+            <div class="portfolio-item">
+                <img src="Day7.png" alt="Sample Work">
+                <div class="overlay">Sample Work 14</div>
+            </div>
+            <div class="portfolio-item">
+                <img src="Day16.png" alt="Sample Work">
+                <div class="overlay">Sample Work 15</div>
+            </div>
+            <div class="portfolio-item">
+                <img src="Day4.png" alt="Sample Work">
+                <div class="overlay">Sample Work 16</div>
+            </div>
+            <div class="portfolio-item">
+                <img src="Day3.png" alt="Sample Work">
+                <div class="overlay">Sample Work 17</div>
+            </div>
+            <div class="portfolio-item">
+                <img src="Day27.png" alt="Sample Work">
+                <div class="overlay">Sample Work 18</div>
+            </div>
+            <div class="portfolio-item">
+                <img src="Day23.png" alt="Sample Work">
+                <div class="overlay">Sample Work 19</div>
+            </div>
+            <div class="portfolio-item">
+                <img src="Day16.png" alt="Sample Work">
+                <div class="overlay">Sample Work 20</div>
+            </div>
+            <div class="portfolio-item">
+                <img src="Day19.png" alt="Sample Work">
+                <div class="overlay">Sample Work 21</div>
+            </div>
+            <div class="portfolio-item">
+                <img src="dayy18.png" alt="Sample Work">
+                <div class="overlay">Sample Work 22</div>
+            </div>
+            <div class="portfolio-item">
+                <img src="Day30.png" alt="Sample Work">
+                <div class="overlay">Sample Work 23</div>
+            </div>
+            <div class="portfolio-item">
+                <img src="Day17.png" alt="Sample Work">
+                <div class="overlay">Sample Work 24</div>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section id="contact" class="contact">
+        <h2>Contact Me</h2>
+        <div class="contact-details">
+            <p>Email: tzbhargav@gmail.com</p>
+            <p>Phone: +91 97033 28604</p>
+            <p>Socials: <a href="https://www.instagram.com/tz_bhargav/" style="color: #7FFFD4; text-decoration: none;"
+                    target="_blank">Instagram</a> | <a href="https://www.linkedin.com/in/tzbhargav/"
+                    style="color: #7FFFD4; text-decoration: none;" target="_blank">LinkedIn</a></p>
+        </div>
+    </section>
+
+    <footer>
+        &copy; 2024 Bhargav Krishna. All rights reserved.
+    </footer>
+    <script>
+        // JavaScript to wrap each letter of the hero text in a span
+        document.addEventListener("DOMContentLoaded", () => {
+            const heroText = document.querySelector(".hero h1");
+            heroText.innerHTML = heroText.textContent
+                .split("")
+                .map(char => (char.trim() ? `<span>${char}</span>` : " "))
+                .join("");
+        });
+    </script>
+</body>
+
+</html>
